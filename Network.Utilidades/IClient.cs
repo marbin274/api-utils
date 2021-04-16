@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 
 namespace Network.Utilidades
 {
-    public interface IHandler
+    public interface IClient
     {
-        IHandler Authorization(string token);
+        IClient Authorization(string token);
         T Get<T>(string path, string query) where T : class;
         Task<T> GetAsync<T>(string path, string query = null) where T : class;
 

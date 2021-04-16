@@ -6,16 +6,17 @@ using Network.Utilidades;
 using SystemHttp = System.Net.Http;
 namespace Network.Client
 {
-    public class HttpClient : HandlerGeneric
+    public class HttpClient : ClientGeneric
     {
         private SystemHttp.HttpClient _client;
-        public HttpClient(string basePath) : base(basePath)
+        public HttpClient(string basePath, ClientOptions options = null) : base(basePath, options)
         {
             _client = new SystemHttp.HttpClient();
             _client.BaseAddress = new Uri(BasePath);
             _client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+                new MediaTypeWithQualityHeaderValue(_mediaType));
         }
+
 
         public override T Get<T>(string path, string query)
         {

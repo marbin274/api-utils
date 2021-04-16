@@ -10,11 +10,14 @@ namespace ShowCase
     {
         static void Main(string[] args)
         {
-            IHandler client = new Network.Client.HttpClient("https://gorest.co.in/public-api/");
-            Response<List<User>, UsersMeta> responseUserList = client.Authorization("").GetAsync<Response<List<User>, UsersMeta>>("users").Result;
+            ClientOptions ClientOptions = new ClientOptions() { Authorization = "" };
+            IClient client = new Network.Client.HttpClient("https://gorest.co.in/public-api/", ClientOptions);
 
-            Response<User, UsersMeta> responseUser = client.Authorization("").GetAsync<Response<User, UsersMeta>>("users/1").Result;
-            
+            Response<List<User>, UsersMeta> responseUserList = client.GetAsync<Response<List<User>, UsersMeta>>("users").Result;
+            Console.WriteLine($"Cantidad de registros: {responseUserList.data.Count}");
+
+            Response<User, UsersMeta> responseUser = client.GetAsync<Response<User, UsersMeta>>("users/1").Result;
+            Console.WriteLine($"Email del usuario: {responseUser.data.Email}");
         }
     }
 }
