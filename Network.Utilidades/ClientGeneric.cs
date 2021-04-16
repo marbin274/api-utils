@@ -21,15 +21,12 @@ namespace Network.Utilidades
         }
 
 
-        public IClient Authorization(string token)
-        {
-            AuthorizationKey = token;
-            return this;
-        }
+        public abstract IClient Authorization(string token);
         public abstract T Get<T>(string path, string query) where T : class;
         public abstract Task<T> GetAsync<T>(string path, string query) where T : class;
-
-
+        public abstract Task<U> PostAsync<T, U>(string path, T data) where T : class;
+        public abstract Task<U> PatchAsync<T, U>(string path, T data) where T : class;
+        public abstract Task<T> DeleteAsync<T>(string path);
     }
 
 }
