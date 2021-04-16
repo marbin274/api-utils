@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
+
 namespace Network.Utilidades
 {
-    public abstract class HandlerGeneric<T> : IHandler<T> where T : class
+    public abstract class HandlerGeneric : IHandler
     {
         public string BasePath { get; private set; }
         private string _authorization { get; set; }
@@ -9,13 +11,13 @@ namespace Network.Utilidades
             BasePath = basePath;
         }
 
-        public IHandler<T> Authorization(string token)
+        public IHandler Authorization(string token)
         {
             _authorization = token;
             return this;
         }
-        public abstract T Get(string path, string query);
-        public abstract T GetAsync(string path, string query);
+        public abstract T Get<T>(string path, string query) where T : class;
+        public abstract Task<T> GetAsync<T>(string path, string query) where T : class;
 
 
     }

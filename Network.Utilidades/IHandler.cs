@@ -1,10 +1,12 @@
+using System.Threading.Tasks;
+
 namespace Network.Utilidades
 {
-    public interface  IHandler<T> where T : class
+    public interface IHandler
     {
-        IHandler<T> Authorization(string token);
-        T Get(string path, string query);
-        T GetAsync(string path, string query);
+        IHandler Authorization(string token);
+        T Get<T>(string path, string query) where T : class;
+        Task<T> GetAsync<T>(string path, string query = null) where T : class;
 
     }
 }
