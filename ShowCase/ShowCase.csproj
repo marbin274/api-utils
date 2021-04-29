@@ -4,6 +4,7 @@
     <ProjectReference Include="..\Network.Utilidades\Network.Utilidades.csproj" />
     <ProjectReference Include="..\Network.Client.HttpClient\Network.Client.HttpClient.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Network.Client.RestSharp\Network.Client.RestSharp.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

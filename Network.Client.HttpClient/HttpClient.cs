@@ -44,15 +44,10 @@ namespace Network.Client
             return dataResult;
         }
 
-        public override T Get<T>(string path, string query)
-        {
-            throw new NotImplementedException();
-        }
-
         public override async Task<T> GetAsync<T>(string path, string query) where T : class
         {
             T data = default(T);
-            HttpResponseMessage response = await _client.GetAsync($"{path}{((query != null && query.Length > 0) ? $"?{query}" : "")}");
+            HttpResponseMessage response = await _client.GetAsync(JoinPathAndQuery(path, query));
             if (response.IsSuccessStatusCode)
             {
                 data = await response.Content.ReadAsAsync<T>();
